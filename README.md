@@ -4,7 +4,7 @@ Version: 2.0.6
 
 ## Author
 
-Jase Warner ( [https://jase.io](https://jase.io) )
+Fritz Darryl
 
 ## Synopsis
 
