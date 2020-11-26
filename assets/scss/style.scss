@@ -1,0 +1,42 @@
+// --------------------------------------------------
+// vars
+
+@import 'partials/variables';
+
+// --------------------------------------------------
+// bootstrap
+
+@import '../node_modules/bootstrap-scss/bootstrap-reboot';
+@import '../node_modules/bootstrap-scss/bootstrap-grid';
+
+// --------------------------------------------------
+// mixins
+
+@import 'mixins/fonts';
+@import 'mixins/helpers';
+
+// --------------------------------------------------
+// partials
+
+@import 'partials/base';
+@import 'partials/icons';
+@import 'partials/buttons';
+@import 'partials/type';
+
+// --------------------------------------------------
+// layout
+
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/main';
+@import 'layout/nav';
+
+// --------------------------------------------------
+// components
+
+// @import your components here
+
+// --------------------------------------------------
+// views
+
+// @import your views/pages here
