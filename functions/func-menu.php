@@ -10,11 +10,11 @@
 /**
  * Register nav menus
  */
-function gulp_wp_register_menus() {
+function wpx_wp_register_menus() {
 	register_nav_menus(
 		array(
 			'primary' => __( 'Primary' ),
 		)
 	);
 }
-add_action( 'init', 'gulp_wp_register_menus' );
+add_action( 'init', 'wpx_wp_register_menus' );

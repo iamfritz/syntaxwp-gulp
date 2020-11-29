@@ -1,77 +1,50 @@
-'use strict';
-
 const gulp = require('gulp');
-const babel = require('gulp-babel');
 const sass = require('gulp-sass');
+const del = require('del');
+const minify = require("gulp-minify");
+const scsslint = require('gulp-scss-lint');
 const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
-const concat = require('gulp-concat');
-const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
-const scsslint = require('gulp-scss-lint');
 
-/**
- * Here we set a prefix for our compiled and stylesheet and scripts.
- * Note that this should be the same as the `$themeHandlePrefix` in `func-script.php` and `func-style.php`.
- */
-const themePrefix = 'theme-name';
+const themePrefix = 'mad';
 
 /**
  * Asset paths.
  */
 const scssSrc = 'scss/**/*.scss';
+const SassToCssLocation = './css/';
 
-const jsSrcDir = 'js';
-const jsSrcFiles = [
-    `${jsSrcDir}/scripts/common.js`,
-];
-
-/**
- * Scss lint
- */
-gulp.task('scss-lint', function() {
-    return gulp.src(scssSrc)
-        .pipe(scsslint());
-});
-
-/**
- * Task for styles.
- *
- * Scss files are compiled and sent over to `assets/css/`.
- */
-gulp.task('css', ['scss-lint'], function () {
+gulp.task('css', () => {
     return gulp.src(scssSrc)
         .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({ cascade : false }))
-        .pipe(rename(`${themePrefix}.min.css`))
+        .pipe(autoprefixer({ cascade: false }))
+        //.pipe(rename(`${themePrefix}.min.css`))
         .pipe(cleancss())
-        .pipe(gulp.dest('./css/'));
+        .pipe(gulp.dest(SassToCssLocation));
 });
 
-/**
- * Task for scripts.
- *
- * Js files are uglified and sent over to `assets/js/scripts/`.
- */
-gulp.task('js', function () {
-    return gulp.src(jsSrcFiles)
-        .pipe(babel({
-            presets : ['es2015']
+gulp.task('js', function() {
+    return gulp.src('scripts/*.js')
+        .pipe(minify({
+            ext: {
+                min: '.min.js'
+            },
+            ignoreFiles: ['-min.js']
         }))
-        .pipe(concat(`${themePrefix}.min.js`))
-        .pipe(uglify())
-        .pipe(gulp.dest('./js/'));
+        .pipe(gulp.dest('js'))
 });
 
-/**
- * Task for watching styles and scripts.
- */
-gulp.task('watch', function () {
-    gulp.watch(scssSrc, ['css']);
-    gulp.watch(jsSrcFiles, ['js']);
+gulp.task('clean', () => {
+    return del([
+        'css/app.css',
+        'js/app.js',
+    ]);
 });
 
-/**
- * Default task
- */
-gulp.task('default', ['css', 'js'] );
+gulp.task('watch', () => {
+    gulp.watch('sass/**/*.scss', (done) => {
+        gulp.series(['clean', 'css', 'js'])(done);
+    });
+});
+
+gulp.task('default', gulp.series(['clean', 'css', 'js']));
