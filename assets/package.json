@@ -21,6 +21,8 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-rev": "^9.0.0",
-    "gulp-scss-lint": "^1.0.0"
+    "gulp-scss-lint": "^1.0.0",
+    "gulp-strip-debug": "^3.0.0",
+    "gulp-uglify": "^3.0.2"
   }
 }

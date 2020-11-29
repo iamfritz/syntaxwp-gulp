@@ -5,6 +5,9 @@ const minify = require("gulp-minify");
 const scsslint = require('gulp-scss-lint');
 const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
+const concat = require('gulp-concat');
+const stripDebug = require('gulp-strip-debug');
+const uglify = require('gulp-uglify');
 
 const themePrefix = 'mad';
 
@@ -23,7 +26,7 @@ gulp.task('css', () => {
         .pipe(gulp.dest(SassToCssLocation));
 });
 
-gulp.task('js', function() {
+/* gulp.task('scripts', function() {
     return gulp.src('scripts/*.js')
         .pipe(minify({
             ext: {
@@ -32,6 +35,14 @@ gulp.task('js', function() {
             ignoreFiles: ['-min.js']
         }))
         .pipe(gulp.dest('js'))
+}); */
+
+gulp.task('js', function() {
+    gulp.src('scripts/*.js') // define source directory where ur js files
+        .pipe(concat('app.js')) //define concatination & name for out put file
+        .pipe(stripDebug()) //Useful for making sure you didn't leave any logging in production code.
+        .pipe(uglify()) // make outputfile compress/beautifier
+        .pipe(gulp.dest('js/')); // define destination dir to store files
 });
 
 gulp.task('clean', () => {
