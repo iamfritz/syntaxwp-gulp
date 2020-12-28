@@ -8,12 +8,19 @@
  */
 
 
-require get_stylesheet_directory() . '/includes/helper.php';
-require get_stylesheet_directory() . '/includes/register-post-type.php';
-require get_stylesheet_directory() . '/includes/register-menu.php';
-require get_stylesheet_directory() . '/includes/enqueue.php';
+require get_stylesheet_directory() . '/libraries/config.php';
+require get_stylesheet_directory() . '/libraries/helper.php';
 
-require get_stylesheet_directory() . '/includes/admin.php';
-require get_stylesheet_directory() . '/includes/hooks.php';
-require get_stylesheet_directory() . '/includes/custom.php';
-require get_stylesheet_directory() . '/includes/woo.php';
+require get_stylesheet_directory() . '/libraries/theme.php';
+require get_stylesheet_directory() . '/libraries/shortcode.php';
+require get_stylesheet_directory() . '/libraries/register-widgets.php';
+require get_stylesheet_directory() . '/libraries/register-post-type.php';
+require get_stylesheet_directory() . '/libraries/register-menu.php';
+require get_stylesheet_directory() . '/libraries/enqueue.php';
+
+require get_stylesheet_directory() . '/libraries/acf.php';
+require get_stylesheet_directory() . '/libraries/admin.php';
+require get_stylesheet_directory() . '/libraries/hooks.php';
+require get_stylesheet_directory() . '/libraries/custom.php';
+
+require get_stylesheet_directory() . '/libraries/woo.php';

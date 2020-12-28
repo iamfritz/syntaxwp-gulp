@@ -54,6 +54,12 @@ There are also a selection of useful WordPress functions located in the `functio
 * Pretty printing debugging tool for PHP
 * Register custom navigation menu
 
+*config
+Hide Admin Bar
+
+login logo
+- images/logo-admin.png
+
 ## Credits
 
 * [WordPress](https://wordpress.com)
